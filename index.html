@@ -7,7 +7,26 @@
     <link rel="stylesheet" href="./index.css">
 </head>
 <body>
-    <p>test</p>
+    <div id="divtimer">
+        <div id="timer"></div>
+        <button onclick="vergeetFunctie()">Vergeten timen?</button>        
+        <div id="vergeet" hidden>            
+            <label for="timer_input"> (hh:mm:ss)</label>
+            <input type="time" name="timer_input" id="timer_input" step="1" value="00:00:00">
+        </div>
+    </div>
+    <div id="bon-dropdown">
+        <label for="bonner">Wie heeft er geBONt?</label>
+        <select name="bonner" id="bonner">
+          <option value="Gianni">Gianni</option>
+          <option value="Louis">Louis</option>
+          <option value="Thibeus">Thibeus</option>
+          <option value="Ruben">Ruben</option>
+          <option value="Sander">Sander</option>
+        </select>        
+    </div>
+    <button onclick="knopklik(this)">BON</button>
+    <button onclick="insertInto()">SAVE</button>    
     <script src="./index.js"></script>
 </body>
 </html>
