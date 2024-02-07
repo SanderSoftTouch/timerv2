@@ -122,7 +122,7 @@ function insertInto(){
         saveStatus.innerHTML = "Error saving this piece of shit";
         saveStatus.style.color = "red";
         saveStatus.hidden = false;
-        });
+    });
     
 }
 
