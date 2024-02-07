@@ -48,6 +48,11 @@ function knopklik(button){
             console.log(teller);
             //window[`teller_${knop.parentElement.id.charAt(knop.parentElement.id.length - 1)}`] = teller;
             timer.innerText = tijdConverter(teller)
+            if(teller > 600){
+                timer.style.color = "orange"
+            } if(teller > 900){
+                timer.style.color = "red"
+            }
         }, 1000);
     } else {
         button.innerHTML = "BON"
