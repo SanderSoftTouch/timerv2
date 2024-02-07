@@ -33,28 +33,41 @@ body{
 }
 
 .AddTimeContainer{
-    display: flex;
+    display: block;
 }
 
 .AddTimeElement{
+    margin-left: auto;
+    margin-right: auto;
     width: 50%;
 }
 
 .buttonAddTime{
     background-color: #1bbacf;
     text-align: center;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     height: 30px;
     margin-top: 10px;
     margin-bottom: 10px;
     border-style: none;
     border-radius: 10px;
+    text-align: center;
+}
+
+.button{
+    width: 100%;
+    height: 100%;
+    background-color:#1bbacf;
+    border-style: none;
+    border-radius: 5px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 .timeForgot{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     text-align: center;
     margin-top: 10px;
     margin-bottom: 10px;
+    color: #1bbacf;
 }
 
 .userDropdown{
