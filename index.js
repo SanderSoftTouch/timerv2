@@ -33,19 +33,17 @@ function knopklik(button){
         button.style.color = "white"
         button.style.borderColor = "White"
         var saveStatusCorrect = document.getElementById("saveStatusCorrect");
-          if(saveStatusCorrect.hidden){
-          } else {
-              saveStatusCorrect.hidden = true
-          }
+        if(!saveStatusCorrect.hidden){
+          saveStatusCorrect.hidden = true
+        }
         var saveStatusError = document.getElementById("saveStatusError");
-          if(saveStatusError.hidden){
-          } else {
-              saveStatusError.hidden = true
-          }
+        if(!saveStatusError.hidden){
+          saveStatusError.hidden = true
+        }
         var teller = tellerConverter(timer.innerText)
         timerOn = setInterval(function(){ //start_timer
             teller ++;
-            console.log(teller);
+            //console.log(teller);
             //window[`teller_${knop.parentElement.id.charAt(knop.parentElement.id.length - 1)}`] = teller;
             timer.innerText = tijdConverter(teller)
             if(teller > 600){
@@ -77,6 +75,11 @@ function tellerConverter(tijd){
     var min = parseInt(tijdteller[1])*60
     var sec = parseInt(tijdteller[2])
     return uur + min + sec
+}
+
+function resetClick(){
+    timer.innerText = '00:00:00'
+    timer.style.color = "#1bbacf"
 }
 
 function slaOp(knop){
