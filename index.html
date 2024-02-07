@@ -6,9 +6,9 @@
     <title>Document</title>
     <link rel="stylesheet" href="./index.css">
 </head>
-<body>
-    <div class="mainContainer">
-        <div class="headText">
+<body id="body">
+    <div class="mainContainer" id="mainContainer">
+        <div class="headText" id="headText" onclick="darkMode()">
             BON TIMER
         </div>
         <div id="divtimer">
@@ -34,8 +34,8 @@
             </select>        
         </div>
         <div class="buttonRow">
-            <button class="buttonBon" onclick="knopklik(this)">BON</button>
-            <button class="buttonSave" onclick="insertInto()">SAVE</button>  
+            <button class="buttonBon" id="buttonBon" onclick="knopklik(this)">BON</button>
+            <button class="buttonSave" id="buttonSave" onclick="insertInto()">SAVE</button>  
         </div>
         <div id="saveStatus" class="saveStatus" hidden>
             Serverstatus

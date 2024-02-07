@@ -47,12 +47,16 @@ function knopklik(button){
             } if(teller > 900){
                 timer.style.color = "red"
             }
-        }, 1000);
+        }, 10);
     } else {
-        button.innerHTML = "BON"
-        button.style.backgroundColor = "#cccccc"
+        if(body.style.backgroundColor != "black"){
+            button.style.backgroundColor = "#cccccc"
+        }else{
+            button.style.backgroundColor = "black"
+        }
         button.style.borderColor = "#1bbacf"
         button.style.color = "#1bbacf"
+        button.innerHTML = "BON"
         clearInterval(timerOn) //stop_timer
     }
 }
@@ -74,12 +78,34 @@ function tellerConverter(tijd){
 }
 
 function resetClick(){
-    timer.innerText = '00:00:00'
-    timer.style.color = "#1bbacf"
-    var saveStatus = document.getElementById("saveStatus");
-    saveStatus.innerHTML = "Timer has been reset!!";
-    saveStatus.style.color = "#1bbacf";
-    saveStatus.hidden = false;
+    if(timer.innerText == '00:00:00'){
+        var saveStatus = document.getElementById("saveStatus");
+        saveStatus.innerHTML = "The timer is already 0, ya piece of shit";
+        saveStatus.style.color = "#1bbacf";
+        saveStatus.hidden = false;
+    }else {
+        timer.innerText = '00:00:00'
+        timer.style.color = "#1bbacf"
+        var saveStatus = document.getElementById("saveStatus");
+        saveStatus.innerHTML = "Timer has been reset!!";
+        saveStatus.style.color = "#1bbacf";
+        saveStatus.hidden = false;
+    }
+    
+}
+
+function darkMode(){
+    if(body.style.backgroundColor != "black"){
+        body.style.backgroundColor = "black";
+        mainContainer.style.backgroundColor = "black";
+        buttonSave.style.backgroundColor = "black";
+        buttonBon.style.backgroundColor = "black";
+    }else{
+        body.style.backgroundColor = "#dbdbdb";
+        mainContainer.style.backgroundColor = "#dbdbdb";
+        buttonSave.style.backgroundColor = "#cccccc";
+        buttonBon.style.backgroundColor = "#cccccc";
+    }
 }
 
 function slaOp(knop){
