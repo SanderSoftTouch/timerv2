@@ -32,15 +32,11 @@ function knopklik(button){
         button.style.backgroundColor = "Red"
         button.style.color = "white"
         button.style.borderColor = "White"
-        var saveStatusCorrect = document.getElementById("saveStatusCorrect");
-        if(!saveStatusCorrect.hidden){
-          saveStatusCorrect.hidden = true
-        }
-        var saveStatusError = document.getElementById("saveStatusError");
-        if(!saveStatusError.hidden){
-          saveStatusError.hidden = true
-        }
-        var teller = tellerConverter(timer.innerText)
+        var teller = tellerConverter(timer.innerText);
+
+        var saveStatus = document.getElementById("saveStatus");
+        saveStatus.hidden = true;
+
         timerOn = setInterval(function(){ //start_timer
             teller ++;
             //console.log(teller);
@@ -80,6 +76,10 @@ function tellerConverter(tijd){
 function resetClick(){
     timer.innerText = '00:00:00'
     timer.style.color = "#1bbacf"
+    var saveStatus = document.getElementById("saveStatus");
+    saveStatus.innerHTML = "Timer has been reset!!";
+    saveStatus.style.color = "#1bbacf";
+    saveStatus.hidden = false;
 }
 
 function slaOp(knop){
@@ -92,11 +92,6 @@ function slaOp(knop){
 }
 
 function insertInto(){
-    var saveStatusCorrect = document.getElementById("saveStatusCorrect");
-          if(saveStatusCorrect.hidden){
-              saveStatusCorrect.hidden = false
-          }
-   
     const data = {
         created_at: new Date(),
         product_name: "Titielover deluxe"
@@ -116,14 +111,18 @@ function insertInto(){
           
         }
         console.log('Data inserted successfully');
+        var saveStatus = document.getElementById("saveStatus");
+        saveStatus.innerHTML = "Shit timer saved succesfully"
+        saveStatus.style.color = "green"
+        saveStatus.hidden = false
     })
     .catch(error => {
         console.error('Error inserting data:', error);
-        var saveStatusError = document.getElementById("saveStatusError");
-            if(saveStatusError.hidden){
-                saveStatusError.hidden = false
-            }
-    });
+        var saveStatus = document.getElementById("saveStatus");
+        saveStatus.innerHTML = "Error saving this piece of shit";
+        saveStatus.style.color = "red";
+        saveStatus.hidden = false;
+        });
     
 }
 
