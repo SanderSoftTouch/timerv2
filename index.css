@@ -3,3 +3,143 @@
     /*margin: 0;*/
     box-sizing: border-box;
 }
+
+body{
+    background-color: #dbdbdb;
+}
+
+.mainContainer{
+    background-color: #dbdbdb;
+    width: 65%;
+    margin-left:  auto;
+    margin-right: auto;
+    margin-top: 50px;
+    padding-top: 10px;
+}
+
+.headText{
+    font-size: 30px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: #1bbacf;
+    text-align: center;
+    border-style: solid;
+    border-radius: 5px;
+    border-color: #1bbacf;
+    width: 40%;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.AddTimeContainer{
+    display: block;
+}
+
+.AddTimeElement{
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.buttonAddTime{
+    background-color: #1bbacf;
+    text-align: center;
+    height: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-style: none;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.button{
+    width: 100%;
+    height: 100%;
+    background-color:#1bbacf;
+    border-style: none;
+    border-radius: 5px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.timeForgot{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #1bbacf;
+}
+
+.userDropdown{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: #1bbacf;
+    text-align: center;
+}
+
+.timer{
+    font-size: 25px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: #1bbacf;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-align: center;
+}
+
+.buttonRow {
+    text-align: center;
+}
+
+.buttonBon, .buttonSave {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 20px;
+    color:#1bbacf;
+    padding: 5px;
+    margin: 10px; /* Adjust the margin as needed */
+    width: 150px;
+    height: fit-content;
+    background-color: #cccccc;
+    border-style: solid;
+    border-radius: 5px;
+    border-color: #1bbacf;
+}
+
+.saveStatusCorrect{
+    text-align: center;
+    font-size: 13px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color:green;
+}
+
+.saveStatusError{
+    text-align: center;
+    font-size: 13px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color:red;
+}
+
+@media (max-width: 1000px) {
+    .mainContainer{
+        background-color: #dbdbdb;
+        width: 80%;
+        margin-left:  auto;
+        margin-right: auto;
+        margin-top: 50px;
+        padding-top: 10px;
+    }
+
+    .headText{
+        font-size: 30px;
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        color: #1bbacf;
+        text-align: center;
+        border-style: solid;
+        border-radius: 5px;
+        border-color: #1bbacf;
+        width: 80%;
+        padding-top: 3px;
+        padding-bottom: 3px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+

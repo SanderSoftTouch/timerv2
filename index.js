@@ -30,16 +30,35 @@ function knopklik(button){
     if(button.innerHTML == "BON"){
         button.innerHTML = "STOP BON"
         button.style.backgroundColor = "Red"
+        button.style.color = "white"
+        button.style.borderColor = "White"
+        var saveStatusCorrect = document.getElementById("saveStatusCorrect");
+          if(saveStatusCorrect.hidden){
+          } else {
+              saveStatusCorrect.hidden = true
+          }
+        var saveStatusError = document.getElementById("saveStatusError");
+          if(saveStatusError.hidden){
+          } else {
+              saveStatusError.hidden = true
+          }
         var teller = tellerConverter(timer.innerText)
         timerOn = setInterval(function(){ //start_timer
             teller ++;
             console.log(teller);
             //window[`teller_${knop.parentElement.id.charAt(knop.parentElement.id.length - 1)}`] = teller;
-            button.previousElementSibling.innerText = tijdConverter(teller)
+            timer.innerText = tijdConverter(teller)
+            if(teller > 600){
+                timer.style.color = "orange"
+            } if(teller > 900){
+                timer.style.color = "red"
+            }
         }, 1000);
     } else {
         button.innerHTML = "BON"
-        button.style.backgroundColor = "Green"
+        button.style.backgroundColor = "#cccccc"
+        button.style.borderColor = "#1bbacf"
+        button.style.color = "#1bbacf"
         clearInterval(timerOn) //stop_timer
     }
 }
@@ -70,6 +89,11 @@ function slaOp(knop){
 }
 
 function insertInto(){
+    var saveStatusCorrect = document.getElementById("saveStatusCorrect");
+          if(saveStatusCorrect.hidden){
+              saveStatusCorrect.hidden = false
+          }
+   
     const data = {
         created_at: new Date(),
         product_name: "Titielover deluxe"
@@ -86,11 +110,16 @@ function insertInto(){
     .then(response => {
         if (!response.ok) {
           throw new Error('Failed to insert data');
+          
         }
         console.log('Data inserted successfully');
     })
     .catch(error => {
         console.error('Error inserting data:', error);
+        var saveStatusError = document.getElementById("saveStatusError");
+            if(saveStatusError.hidden){
+                saveStatusError.hidden = false
+            }
     });
     
 }
