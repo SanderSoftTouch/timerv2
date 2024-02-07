@@ -32,6 +32,16 @@ function knopklik(button){
         button.style.backgroundColor = "Red"
         button.style.color = "white"
         button.style.borderColor = "White"
+        var saveStatusCorrect = document.getElementById("saveStatusCorrect");
+          if(saveStatusCorrect.hidden){
+          } else {
+              saveStatusCorrect.hidden = true
+          }
+        var saveStatusError = document.getElementById("saveStatusError");
+          if(saveStatusError.hidden){
+          } else {
+              saveStatusError.hidden = true
+          }
         var teller = tellerConverter(timer.innerText)
         timerOn = setInterval(function(){ //start_timer
             teller ++;
@@ -42,6 +52,8 @@ function knopklik(button){
     } else {
         button.innerHTML = "BON"
         button.style.backgroundColor = "#cccccc"
+        button.style.borderColor = "#1bbacf"
+        button.style.color = "#1bbacf"
         clearInterval(timerOn) //stop_timer
     }
 }
@@ -75,8 +87,6 @@ function insertInto(){
     var saveStatusCorrect = document.getElementById("saveStatusCorrect");
           if(saveStatusCorrect.hidden){
               saveStatusCorrect.hidden = false
-          } else {
-              saveStatusCorrect.hidden = true
           }
    
     const data = {
@@ -104,8 +114,6 @@ function insertInto(){
         var saveStatusError = document.getElementById("saveStatusError");
             if(saveStatusError.hidden){
                 saveStatusError.hidden = false
-            } else {
-                saveStatusError.hidden = true
             }
     });
     
