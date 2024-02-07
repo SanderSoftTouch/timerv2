@@ -17,7 +17,7 @@
                 <div class="buttonAddTime AddTimeElement">
                     <button class="button" onclick="vergeetFunctie()">Vergeten timen?</button>
                 </div>
-                <div class="timeForgot AddTimeElement" id="vergeet" visible>            
+                <div class="timeForgot AddTimeElement" id="vergeet" hidden>            
                     <label for="timer_input"> (hh:mm:ss)</label>
                     <input type="time" name="timer_input" id="timer_input" step="1" value="00:00:00">
                 </div>
@@ -36,6 +36,12 @@
         <div class="buttonRow">
             <button class="buttonBon" onclick="knopklik(this)">BON</button>
             <button class="buttonSave" onclick="insertInto()">SAVE</button>  
+        </div>
+        <div id="saveStatusCorrect" class="saveStatusCorrect" hidden>
+            This shit show has been saved
+        </div>
+        <div id="saveStatusError" class="saveStatusError" hidden>
+            Their was a error saving this piece of shit
         </div>
         <script src="./index.js"></script>
     </div>

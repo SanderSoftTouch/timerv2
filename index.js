@@ -74,6 +74,13 @@ function slaOp(knop){
 }
 
 function insertInto(){
+    var saveStatusCorrect = document.getElementById("saveStatusCorrect");
+          if(saveStatusCorrect.hidden){
+              saveStatusCorrect.hidden = false
+          } else {
+              saveStatusCorrect.hidden = true
+          }
+   
     const data = {
         created_at: new Date(),
         product_name: "Titielover deluxe"
@@ -90,11 +97,18 @@ function insertInto(){
     .then(response => {
         if (!response.ok) {
           throw new Error('Failed to insert data');
+          
         }
         console.log('Data inserted successfully');
     })
     .catch(error => {
         console.error('Error inserting data:', error);
+        var saveStatusError = document.getElementById("saveStatusError");
+            if(saveStatusError.hidden){
+                saveStatusError.hidden = false
+            } else {
+                saveStatusError.hidden = true
+            }
     });
     
 }

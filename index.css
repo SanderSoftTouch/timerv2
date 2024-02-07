@@ -103,6 +103,20 @@ body{
     border-color: #1bbacf;
 }
 
+.saveStatusCorrect{
+    text-align: center;
+    font-size: 13px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color:green;
+}
+
+.saveStatusError{
+    text-align: center;
+    font-size: 13px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color:red;
+}
+
 @media (max-width: 1000px) {
     .mainContainer{
         background-color: #dbdbdb;
