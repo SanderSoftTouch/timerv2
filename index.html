@@ -7,26 +7,35 @@
     <link rel="stylesheet" href="./index.css">
 </head>
 <body>
-    <div id="divtimer">
-        <div id="timer"></div>
-        <button class="buttonAddTime" onclick="vergeetFunctie()">Vergeten timen?</button>        
-        <div id="vergeet" hidden>            
-            <label for="timer_input"> (hh:mm:ss)</label>
-            <input type="time" name="timer_input" id="timer_input" step="1" value="00:00:00">
+    <div class="mainContainer">
+        <div class="headText">
+            BON TIMER
         </div>
+        <div id="divtimer">
+            <div class="timer" id="timer"></div>
+            <div class="AddTimeContainer">
+                <button class="buttonAddTime AddTimeElement" onclick="vergeetFunctie()">Vergeten timen?</button>        
+                <div class="timeForgot AddTimeElement" id="vergeet" visible>            
+                    <label for="timer_input"> (hh:mm:ss)</label>
+                    <input type="time" name="timer_input" id="timer_input" step="1" value="00:00:00">
+                </div>
+            </div>
+        </div>
+        <div class="userDropdown" id="bon-dropdown">
+            <label for="bonner">Wie heeft er geBONt?</label>
+            <select name="bonner" id="bonner">
+            <option value="Gianni">Gianni</option>
+            <option value="Louis">Louis</option>
+            <option value="Thibeus">Thibeus</option>
+            <option value="Ruben">Ruben</option>
+            <option value="Sander">Sander</option>
+            </select>        
+        </div>
+        <div class="buttonRow">
+            <button class="buttonBon" onclick="knopklik(this)">BON</button>
+            <button class="buttonSave" onclick="insertInto()">SAVE</button>  
+        </div>
+        <script src="./index.js"></script>
     </div>
-    <div id="bon-dropdown">
-        <label for="bonner">Wie heeft er geBONt?</label>
-        <select name="bonner" id="bonner">
-          <option value="Gianni">Gianni</option>
-          <option value="Louis">Louis</option>
-          <option value="Thibeus">Thibeus</option>
-          <option value="Ruben">Ruben</option>
-          <option value="Sander">Sander</option>
-        </select>        
-    </div>
-    <button onclick="knopklik(this)">BON</button>
-    <button onclick="insertInto()">SAVE</button>    
-    <script src="./index.js"></script>
 </body>
 </html>

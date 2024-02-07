@@ -39,7 +39,7 @@ function knopklik(button){
         }, 1000);
     } else {
         button.innerHTML = "BON"
-        button.style.backgroundColor = "Green"
+        button.style.backgroundColor = "gray"
         clearInterval(timerOn) //stop_timer
     }
 }

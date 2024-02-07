@@ -4,6 +4,89 @@
     box-sizing: border-box;
 }
 
-.buttonAddTime{
-    background-color: green;
+body{
+    background-color: #dbdbdb;
 }
+
+.mainContainer{
+    background-color: #dbdbdb;
+    width: 40%;
+    margin-left:  auto;
+    margin-right: auto;
+    margin-top: 50px;
+    padding-top: 10px;
+}
+
+.headText{
+    font-size: 30px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: #1bbacf;
+    text-align: center;
+    border-style: solid;
+    border-radius: 5px;
+    border-color: #1bbacf;
+    width: 35%;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.AddTimeContainer{
+    display: flex;
+}
+
+.AddTimeElement{
+    width: 50%;
+}
+
+.buttonAddTime{
+    background-color: #1bbacf;
+    text-align: center;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    height: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-style: none;
+    border-radius: 10px;
+}
+
+.timeForgot{
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.userDropdown{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    border-style: solid;
+    border-radius: 5px;
+    border-color: yellow;
+}
+
+.timer{
+    font-size: 25px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: #1bbacf;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-align: center;
+}
+
+.buttonRow {
+    text-align: center;
+    border-style: solid;
+    border-radius: 5px;
+    border-color: red;
+}
+
+.buttonBon, .buttonSave {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 20px;
+    padding: 5px;
+    margin: 10px; /* Adjust the margin as needed */
+    width: 150px;
+    height: fit-content;
+    background-color: gray
+}
+
