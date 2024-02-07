@@ -14,7 +14,9 @@
         <div id="divtimer">
             <div class="timer" id="timer"></div>
             <div class="AddTimeContainer">
-                <button class="buttonAddTime AddTimeElement" onclick="vergeetFunctie()">Vergeten timen?</button>        
+                <div class="buttonAddTime AddTimeElement">
+                    <button class="button" onclick="vergeetFunctie()">Vergeten timen?</button>
+                </div>
                 <div class="timeForgot AddTimeElement" id="vergeet" visible>            
                     <label for="timer_input"> (hh:mm:ss)</label>
                     <input type="time" name="timer_input" id="timer_input" step="1" value="00:00:00">

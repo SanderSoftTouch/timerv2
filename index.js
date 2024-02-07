@@ -30,7 +30,8 @@ function knopklik(button){
     if(button.innerHTML == "BON"){
         button.innerHTML = "STOP BON"
         button.style.backgroundColor = "Red"
-        button.style.Color = "white"
+        button.style.color = "white"
+        button.style.borderColor = "White"
         var teller = tellerConverter(timer.innerText)
         timerOn = setInterval(function(){ //start_timer
             teller ++;
@@ -41,6 +42,8 @@ function knopklik(button){
     } else {
         button.innerHTML = "BON"
         button.style.backgroundColor = "#cccccc"
+        button.style.color = "#1bbacf"
+        button.style.borderColor = "#1bbacf"
         clearInterval(timerOn) //stop_timer
     }
 }
