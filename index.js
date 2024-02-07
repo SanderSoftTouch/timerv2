@@ -30,16 +30,17 @@ function knopklik(button){
     if(button.innerHTML == "BON"){
         button.innerHTML = "STOP BON"
         button.style.backgroundColor = "Red"
+        button.style.Color = "white"
         var teller = tellerConverter(timer.innerText)
         timerOn = setInterval(function(){ //start_timer
             teller ++;
             console.log(teller);
             //window[`teller_${knop.parentElement.id.charAt(knop.parentElement.id.length - 1)}`] = teller;
-            button.previousElementSibling.innerText = tijdConverter(teller)
+            timer.innerText = tijdConverter(teller)
         }, 1000);
     } else {
         button.innerHTML = "BON"
-        button.style.backgroundColor = "gray"
+        button.style.backgroundColor = "#cccccc"
         clearInterval(timerOn) //stop_timer
     }
 }
