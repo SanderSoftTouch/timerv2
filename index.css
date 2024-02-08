@@ -180,10 +180,13 @@ body{
     height: 100%;
     margin-top: 5px;
     margin-left: 10px;
-    /*border-style: solid;
-    border-radius: 5px;
-    border-color: yellow;*/
 }
+
+.darkModeElement:nth-of-type(3) {
+    margin-right: 0;
+    margin-left: auto;
+}
+
 
 .saveStatus{
     text-align: center;
@@ -197,6 +200,15 @@ body{
     font-size: 13px;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     color:#1bbacf;
+}
+
+.timerInput{
+    background-color: #1bbacf;
+    border-style: none;
+    border-radius: 5px;
+    margin-left: 10px;
+    padding: 5px auto;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 @media (max-width: 1000px) {

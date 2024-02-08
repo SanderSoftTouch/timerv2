@@ -9,29 +9,31 @@
 <body id="body">
     <div class="mainContainer" id="mainContainer">
         <!-- Header -->
-        <div class="headText" id="headText">
+        <div class="headText" id="headText" onclick="secret()">
             BON TIMER
         </div>
         <!-- End Header -->
+        <!-- Darkmode switch-->
         <div class="darkModeContainter">
             <div class="darkModeText darkModeElement" id="darkModeText">Darkmode?</div>
             <div class="darkModeElement">
-                <div class="darkModeSwitch">
+                <div class="darkModeSwitch" id="darkModeSwitchConctainer" visible>
                     <input type="checkbox" value="None" id="darkModeSwitch" name="check" onclick="darkMode()" checked />
                     <label for="darkModeSwitch"></label>
                 </div>
             </div>
+            <div class="darkModeText darkModeElement" id="darkModeText2" hidden>Heheheh, its dark now.... Onec you go black you never go back</div>
         </div>
+        <!-- End Darkmode switch-->
         <div id="divtimer">
             <div class="timer" id="timer" onclick="resetClick()"></div>
             <div id="status" class="status" hidden></div>
         </div>
         <div class="userSelect" id="bon-dropdown">
-            <label for="bonner">Wie heeft er geBONt?</label>
             <select class="userDropdown" name="bonner" id="bonner">
                 <option value="Gianni">Gianni</option>
                 <option value="Louis">Louis</option>
-                <option value="Thibeus">Thibeus</option>
+                <option value="Thibeus">Thibeau</option>
                 <option value="Ruben">Ruben</option>
                 <option value="Sander">Sander</option>
             </select>        
@@ -46,7 +48,7 @@
             </div>
             <div class="timeForgot AddTimeElement" id="vergeet" hidden>            
                 <label for="timer_input"> (hh:mm:ss)</label>
-                <input type="time" name="timer_input" id="timer_input" step="1" value="00:00:00">
+                <input class="timerInput" type="time" name="timer_input" id="timer_input" step="1" value="00:00:00">
             </div>
         </div>
         <div id="saveStatus" class="saveStatus" hidden></div>

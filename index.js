@@ -100,13 +100,10 @@ function resetClick(){
         saveStatus.style.color = "red";
         saveStatus.hidden = false;
 
-        setTimeout(function() {
-            saveStatus.hidden = true; // Show the status after resetting
-        }, 60000); // 1 minute timeout
     }
     else{
         if(timer.innerText == '00:00:00'){
-            saveStatus.innerHTML = "The timer is already 0, ya piece of shit";
+            saveStatus.innerHTML = "The timer is already 0";
             saveStatus.style.color = "#1bbacf";
             saveStatus.hidden = false;
         }else {
@@ -120,8 +117,17 @@ function resetClick(){
         statusUpdate(timeStatus);
         document.getElementById('timer').classList.remove('flash-text');
     }
+
+    setTimeout(function() {
+        saveStatus.hidden = true; // Show the status after resetting
+    }, 60000); // 1 minute timeout
     
 }
+
+function secret(){
+    document.getElementById('darkModeSwitchConctainer').hidden = false
+}
+
 
 function statusUpdate(timeStatus){
     var status = document.getElementById("status");
@@ -156,18 +162,21 @@ function darkMode(){
         body.style.backgroundColor = "black";
         mainContainer.style.backgroundColor = "black";
         buttonSave.style.backgroundColor = "black";
+        document.getElementById('darkModeText2').hidden = false
+        document.getElementById('darkModeSwitchConctainer').hidden = true
         if(buttonBon.innerHTML == "BON"){
             console.log("Bon-> Zwart");
             buttonBon.style.backgroundColor = "black";
         }
         else{
-            console.log("WStopBon-> Rood");
+            console.log("StopBon-> Rood");
             buttonBon.style.backgroundColor = "red";
         }
     }else{
         body.style.backgroundColor = "#dbdbdb";
         mainContainer.style.backgroundColor = "#dbdbdb";
         buttonSave.style.backgroundColor = "#cccccc";
+        document.getElementById('darkModeText2').hidden = true
         if(buttonBon.innerHTML == "BON"){
             buttonBon.style.backgroundColor = "#cccccc";
         }
@@ -187,6 +196,7 @@ function slaOp(knop){
 }
 
 function insertInto(){
+    console.log(bonner.innerHTML);
     const data = {
         created_at: new Date(),
         product_name: "Titielover deluxe"
