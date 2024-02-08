@@ -103,11 +103,35 @@ body{
     border-color: #1bbacf;
 }
 
+.darkModeText {
+    color: #1bbacf;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.darkModeContainter {
+    display: flex;
+    font-size: 10px;
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.darkModeElement {
+    height: 100%;
+}
+
 .saveStatus{
     text-align: center;
     font-size: 13px;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     color:red;
+}
+
+.status{
+    text-align: center;
+    font-size: 13px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color:#1bbacf;
 }
 
 
@@ -132,6 +156,14 @@ body{
         width: 80%;
         padding-top: 3px;
         padding-bottom: 3px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .darkModeContainter {
+        display: flex;
+        font-size: 10px;
+        width: 80%;
         margin-left: auto;
         margin-right: auto;
     }

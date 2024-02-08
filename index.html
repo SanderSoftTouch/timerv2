@@ -8,11 +8,23 @@
 </head>
 <body id="body">
     <div class="mainContainer" id="mainContainer">
-        <div class="headText" id="headText" onclick="darkMode()">
+        <div class="headText" id="headText">
             BON TIMER
+        </div>
+        <div class="darkModeContainter">
+            <div class="darkModeText darkModeElement" id="darkModeText">Darkmode?</div>
+            <div>
+                <label class="switch darkModeElement">
+                    <input type="checkbox" id="functionSwitch" onclick="darkMode()">
+                    <span class="slider"></span>
+                </label>
+            </div>
         </div>
         <div id="divtimer">
             <div class="timer" id="timer" onclick="resetClick()"></div>
+            <div id="status" class="status" hidden>
+                Status
+            </div>
             <div class="AddTimeContainer">
                 <div class="buttonAddTime AddTimeElement">
                     <button class="button" onclick="vergeetFunctie()">Vergeten timen?</button>

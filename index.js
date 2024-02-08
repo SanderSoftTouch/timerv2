@@ -1,6 +1,11 @@
 //console.log(msg)
 var timer = document.getElementById("timer");
 var timerOn;
+var timeStatus = "100"
+// Status 100 = 0 Minuten
+// Status 200 = >0 Minuten
+// Status 300 = >10 Minuten
+// Status 400 = >15 Minuten
 
 window.onload = function(e){
     timer.innerText = '00:00:00'
@@ -42,10 +47,16 @@ function knopklik(button){
             //console.log(teller);
             //window[`teller_${knop.parentElement.id.charAt(knop.parentElement.id.length - 1)}`] = teller;
             timer.innerText = tijdConverter(teller)
+            timeStatus = "200";
+            statusUpdate(timeStatus);
             if(teller > 600){
-                timer.style.color = "orange"
+                timer.style.color = "orange";
+                timeStatus = "300";
+                statusUpdate(timeStatus);
             } if(teller > 900){
-                timer.style.color = "red"
+                timer.style.color = "red";
+                timeStatus = "400";
+                statusUpdate(timeStatus);
             }
         }, 10);
     } else {
@@ -78,20 +89,43 @@ function tellerConverter(tijd){
 }
 
 function resetClick(){
+    var saveStatus = document.getElementById("saveStatus");
     if(timer.innerText == '00:00:00'){
-        var saveStatus = document.getElementById("saveStatus");
         saveStatus.innerHTML = "The timer is already 0, ya piece of shit";
         saveStatus.style.color = "#1bbacf";
         saveStatus.hidden = false;
     }else {
-        timer.innerText = '00:00:00'
-        timer.style.color = "#1bbacf"
-        var saveStatus = document.getElementById("saveStatus");
+        timer.innerText = '00:00:00';
+        timer.style.color = "#1bbacf";
         saveStatus.innerHTML = "Timer has been reset!!";
         saveStatus.style.color = "#1bbacf";
         saveStatus.hidden = false;
     }
-    
+    timeStatus = "100";
+    statusUpdate(timeStatus);
+}
+
+function statusUpdate(timeStatus){
+    var status = document.getElementById("status");
+    console.log(timeStatus);
+    if(timeStatus == 100){
+        status.hidden = true;
+    }
+    if(timeStatus == 200){
+        status.innerHTML = "SHITTING IN PROGRESSS..."
+        status.style.color = "#1bbacf"
+        status.hidden = false;
+    }
+    if(timeStatus == 300){
+        status.innerHTML = "DAMM YOU SHITTING A LOT";
+        status.style.color = "orange"
+        status.hidden = false;
+    }
+    if(timeStatus == 400){
+        status.innerHTML = "STOP SHITTINGG GODDAMMIT"
+        status.style.color = "red"
+        status.hidden = false;
+    }
 }
 
 function darkMode(){
