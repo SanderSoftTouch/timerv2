@@ -99,7 +99,6 @@ function resetClick(){
         saveStatus.innerHTML = "The time is running, don't try to reset it";
         saveStatus.style.color = "red";
         saveStatus.hidden = false;
-
     }
     else{
         if(timer.innerText == '00:00:00'){
@@ -120,7 +119,7 @@ function resetClick(){
 
     setTimeout(function() {
         saveStatus.hidden = true; // Show the status after resetting
-    }, 60000); // 1 minute timeout
+    }, 30000); // 30sec timeout
     
 }
 
