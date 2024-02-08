@@ -8,8 +8,26 @@ var timeStatus = "100"
 // Status 300 = >10 Minuten
 // Status 400 = >15 Minuten
 
+document.addEventListener('DOMContentLoaded', function () {
+    // Check if there's a saved setting in local storage
+    const savedSetting = localStorage.getItem('switchSetting');
+    const switchElement = document.getElementById('darkModeSwitch');
+    // const switchStatusElement = document.getElementById('switchStatus');
+
+    if (savedSetting) {
+        switchElement.checked = savedSetting === 'true';
+    }
+
+    // Add event listener for the switch change
+    switchElement.addEventListener('change', function () {
+        localStorage.setItem('switchSetting', switchElement.checked);
+    });
+});
+
+
 window.onload = function(e){
-    timer.innerText = '00:00:00'
+    timer.innerText = '00:00:00';
+    darkMode();
     fetch('/test')
         .then(response => response.json())
         .then(data => {
@@ -157,7 +175,20 @@ function statusUpdate(timeStatus){
 }
 
 function darkMode(){
-    if(body.style.backgroundColor != "black"){
+    var checkbox = document.getElementById('darkModeSwitch');
+    if(checkbox.checked){
+        body.style.backgroundColor = "#dbdbdb";
+        mainContainer.style.backgroundColor = "#dbdbdb";
+        buttonSave.style.backgroundColor = "#cccccc";
+        document.getElementById('darkModeText2').hidden = true
+        if(buttonBon.innerHTML == "BON"){
+            buttonBon.style.backgroundColor = "#cccccc";
+        }
+        else{
+            buttonBon.style.backgroundColor = "red";
+        }
+    }
+    else{
         body.style.backgroundColor = "black";
         mainContainer.style.backgroundColor = "black";
         buttonSave.style.backgroundColor = "black";
@@ -169,17 +200,6 @@ function darkMode(){
         }
         else{
             console.log("StopBon-> Rood");
-            buttonBon.style.backgroundColor = "red";
-        }
-    }else{
-        body.style.backgroundColor = "#dbdbdb";
-        mainContainer.style.backgroundColor = "#dbdbdb";
-        buttonSave.style.backgroundColor = "#cccccc";
-        document.getElementById('darkModeText2').hidden = true
-        if(buttonBon.innerHTML == "BON"){
-            buttonBon.style.backgroundColor = "#cccccc";
-        }
-        else{
             buttonBon.style.backgroundColor = "red";
         }
     }
