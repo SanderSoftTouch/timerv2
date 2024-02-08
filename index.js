@@ -9,13 +9,12 @@ var timeStatus = "100"
 // Status 400 = >15 Minuten
 
 document.addEventListener('DOMContentLoaded', function () {
-    // Check if there's a saved setting in local storage
-    const savedSetting = localStorage.getItem('switchSetting');
+    //const localSaveTimer = localStorage.getItem('switchSetting');
+    const localSaveDarkMode = localStorage.getItem('switchSetting');
     const switchElement = document.getElementById('darkModeSwitch');
-    // const switchStatusElement = document.getElementById('switchStatus');
 
-    if (savedSetting) {
-        switchElement.checked = savedSetting === 'true';
+    if (localSaveDarkMode) {
+        switchElement.checked = localSaveDarkMode === 'true';
     }
 
     // Add event listener for the switch change
