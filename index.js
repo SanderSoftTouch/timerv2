@@ -56,6 +56,7 @@ function knopklik(button){
                 statusUpdate(timeStatus);
             } if(teller > 900){
                 timer.style.color = "red";
+                document.getElementById('timer').classList.add('flash-text');
                 timeStatus = "400";
                 statusUpdate(timeStatus);
             }
@@ -93,19 +94,33 @@ function tellerConverter(tijd){
 
 function resetClick(){
     var saveStatus = document.getElementById("saveStatus");
-    if(timer.innerText == '00:00:00'){
-        saveStatus.innerHTML = "The timer is already 0, ya piece of shit";
-        saveStatus.style.color = "#1bbacf";
+
+    if(buttonBon.innerHTML == "STOP BON"){
+        saveStatus.innerHTML = "The time is running, don't try to reset it";
+        saveStatus.style.color = "red";
         saveStatus.hidden = false;
-    }else {
-        timer.innerText = '00:00:00';
-        timer.style.color = "#1bbacf";
-        saveStatus.innerHTML = "Timer has been reset!!";
-        saveStatus.style.color = "#1bbacf";
-        saveStatus.hidden = false;
+
+        setTimeout(function() {
+            saveStatus.hidden = true; // Show the status after resetting
+        }, 60000); // 1 minute timeout
     }
-    timeStatus = "100";
-    statusUpdate(timeStatus);
+    else{
+        if(timer.innerText == '00:00:00'){
+            saveStatus.innerHTML = "The timer is already 0, ya piece of shit";
+            saveStatus.style.color = "#1bbacf";
+            saveStatus.hidden = false;
+        }else {
+            timer.innerText = '00:00:00';
+            timer.style.color = "#1bbacf";
+            saveStatus.innerHTML = "Timer has been reset!!";
+            saveStatus.style.color = "#1bbacf";
+            saveStatus.hidden = false;
+        }
+        timeStatus = "100";
+        statusUpdate(timeStatus);
+        document.getElementById('timer').classList.remove('flash-text');
+    }
+    
 }
 
 function statusUpdate(timeStatus){
@@ -141,12 +156,24 @@ function darkMode(){
         body.style.backgroundColor = "black";
         mainContainer.style.backgroundColor = "black";
         buttonSave.style.backgroundColor = "black";
-        buttonBon.style.backgroundColor = "black";
+        if(buttonBon.innerHTML == "BON"){
+            console.log("Bon-> Zwart");
+            buttonBon.style.backgroundColor = "black";
+        }
+        else{
+            console.log("WStopBon-> Rood");
+            buttonBon.style.backgroundColor = "red";
+        }
     }else{
         body.style.backgroundColor = "#dbdbdb";
         mainContainer.style.backgroundColor = "#dbdbdb";
         buttonSave.style.backgroundColor = "#cccccc";
-        buttonBon.style.backgroundColor = "#cccccc";
+        if(buttonBon.innerHTML == "BON"){
+            buttonBon.style.backgroundColor = "#cccccc";
+        }
+        else{
+            buttonBon.style.backgroundColor = "red";
+        }
     }
 }
 

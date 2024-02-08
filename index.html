@@ -24,36 +24,32 @@
         </div>
         <div id="divtimer">
             <div class="timer" id="timer" onclick="resetClick()"></div>
-            <div id="status" class="status" hidden>
-                Status
-            </div>
-            <div class="AddTimeContainer">
-                <div class="buttonAddTime AddTimeElement">
-                    <button class="button" onclick="vergeetFunctie()">Vergeten timen?</button>
-                </div>
-                <div class="timeForgot AddTimeElement" id="vergeet" hidden>            
-                    <label for="timer_input"> (hh:mm:ss)</label>
-                    <input type="time" name="timer_input" id="timer_input" step="1" value="00:00:00">
-                </div>
-            </div>
+            <div id="status" class="status" hidden></div>
         </div>
-        <div class="userDropdown" id="bon-dropdown">
+        <div class="userSelect" id="bon-dropdown">
             <label for="bonner">Wie heeft er geBONt?</label>
-            <select name="bonner" id="bonner">
-            <option value="Gianni">Gianni</option>
-            <option value="Louis">Louis</option>
-            <option value="Thibeus">Thibeus</option>
-            <option value="Ruben">Ruben</option>
-            <option value="Sander">Sander</option>
+            <select class="userDropdown" name="bonner" id="bonner">
+                <option value="Gianni">Gianni</option>
+                <option value="Louis">Louis</option>
+                <option value="Thibeus">Thibeus</option>
+                <option value="Ruben">Ruben</option>
+                <option value="Sander">Sander</option>
             </select>        
         </div>
         <div class="buttonRow">
             <button class="buttonBon" id="buttonBon" onclick="knopklik(this)">BON</button>
             <button class="buttonSave" id="buttonSave" onclick="insertInto()">SAVE</button>  
         </div>
-        <div id="saveStatus" class="saveStatus" hidden>
-            Serverstatus
+        <div class="AddTimeContainer">
+            <div class="buttonAddTime AddTimeElement">
+                <button class="button" onclick="vergeetFunctie()">Vergeten timen?</button>
+            </div>
+            <div class="timeForgot AddTimeElement" id="vergeet" hidden>            
+                <label for="timer_input"> (hh:mm:ss)</label>
+                <input type="time" name="timer_input" id="timer_input" step="1" value="00:00:00">
+            </div>
         </div>
+        <div id="saveStatus" class="saveStatus" hidden></div>
         <script src="./index.js"></script>
     </div>
 </body>
