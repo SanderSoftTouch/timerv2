@@ -2,6 +2,7 @@
 var timer = document.getElementById("timer");
 var timerOn;
 var timeStatus = "100"
+// status 000 = STOP BON press
 // Status 100 = 0 Minuten
 // Status 200 = >0 Minuten
 // Status 300 = >10 Minuten
@@ -58,7 +59,7 @@ function knopklik(button){
                 timeStatus = "400";
                 statusUpdate(timeStatus);
             }
-        }, 10);
+        }, 1000);
     } else {
         if(body.style.backgroundColor != "black"){
             button.style.backgroundColor = "#cccccc"
@@ -68,6 +69,8 @@ function knopklik(button){
         button.style.borderColor = "#1bbacf"
         button.style.color = "#1bbacf"
         button.innerHTML = "BON"
+        timeStatus = "000";
+        statusUpdate(timeStatus);
         clearInterval(timerOn) //stop_timer
     }
 }
@@ -108,20 +111,25 @@ function resetClick(){
 function statusUpdate(timeStatus){
     var status = document.getElementById("status");
     console.log(timeStatus);
-    if(timeStatus == 100){
+    if(timeStatus == "000"){
+        status.innerHTML = "HE IS BACK.... FINALLY"
+        status.style.color = "#1bbacf"
+        status.hidden = false;
+    }
+    if(timeStatus == "100"){
         status.hidden = true;
     }
-    if(timeStatus == 200){
+    if(timeStatus == "200"){
         status.innerHTML = "SHITTING IN PROGRESSS..."
         status.style.color = "#1bbacf"
         status.hidden = false;
     }
-    if(timeStatus == 300){
+    if(timeStatus == "300"){
         status.innerHTML = "DAMM YOU SHITTING A LOT";
         status.style.color = "orange"
         status.hidden = false;
     }
-    if(timeStatus == 400){
+    if(timeStatus == "400"){
         status.innerHTML = "STOP SHITTINGG GODDAMMIT"
         status.style.color = "red"
         status.hidden = false;

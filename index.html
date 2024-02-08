@@ -8,16 +8,18 @@
 </head>
 <body id="body">
     <div class="mainContainer" id="mainContainer">
+        <!-- Header -->
         <div class="headText" id="headText">
             BON TIMER
         </div>
+        <!-- End Header -->
         <div class="darkModeContainter">
             <div class="darkModeText darkModeElement" id="darkModeText">Darkmode?</div>
-            <div>
-                <label class="switch darkModeElement">
-                    <input type="checkbox" id="functionSwitch" onclick="darkMode()">
-                    <span class="slider"></span>
-                </label>
+            <div class="darkModeElement">
+                <div class="darkModeSwitch">
+                    <input type="checkbox" value="None" id="darkModeSwitch" name="check" onclick="darkMode()" checked />
+                    <label for="darkModeSwitch"></label>
+                </div>
             </div>
         </div>
         <div id="divtimer">
