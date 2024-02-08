@@ -8,12 +8,12 @@
 </head>
 <body id="body">
     <div class="mainContainer" id="mainContainer">
-        <!-- Header -->
+        <!--Header-->
         <div class="headText" id="headText" onclick="secret()">
             BON TIMER
         </div>
-        <!-- End Header -->
-        <!-- Darkmode switch-->
+        <!--End Header-->
+        <!--Darkmode switch-->
         <div class="darkModeContainter">
             <div class="darkModeText darkModeElement" id="darkModeText">Darkmode?</div>
             <div class="darkModeElement">
@@ -24,11 +24,14 @@
             </div>
             <div class="darkModeText darkModeElement" id="darkModeText2" hidden>Heheheh, its dark now.... Onec you go black you never go back</div>
         </div>
-        <!-- End Darkmode switch-->
+        <!--End Darkmode switch-->
+        <!--Timer-->
         <div id="divtimer">
             <div class="timer" id="timer" onclick="resetClick()"></div>
             <div id="status" class="status" hidden></div>
         </div>
+        <!--End Timer-->
+        <!--Dropdown-->
         <div class="userSelect" id="bon-dropdown">
             <select class="userDropdown" name="bonner" id="bonner">
                 <option value="Gianni">Gianni</option>
@@ -38,6 +41,7 @@
                 <option value="Sander">Sander</option>
             </select>        
         </div>
+        <!--End Dropdown-->
         <div class="buttonRow">
             <button class="buttonBon" id="buttonBon" onclick="knopklik(this)">BON</button>
             <button class="buttonSave" id="buttonSave" onclick="insertInto()">SAVE</button>  
