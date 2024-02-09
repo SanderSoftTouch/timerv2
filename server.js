@@ -47,11 +47,11 @@ app.use(express.urlencoded({ extended: true })); // Middleware to parse URL-enco
 
 // Endpoint to handle POST requests for inserting data
 app.post('/insert', (req, res) => {
-  const { created_at, product_name } = req.body; // Assuming you're sending 'name' and 'age' in the request body
+  const { SwitchID, BonTijd, Logger } = req.body; // Assuming you're sending 'name' and 'age' in the request body
 
   // Perform the database query
-  const query = 'INSERT INTO test (created_at, product_name) VALUES (?, ?)';
-  connection.query(query, [created_at, product_name], (err, results) => {
+  const query = 'INSERT INTO timer (SwitchID, BonTijd, Logger) VALUES (?, ?)';
+  connection.query(query, [SwitchID, BonTijd, Logger], (err, results) => {
     if (err) {
       console.error('Error executing MySQL query:', err);
       res.status(500).send('Error inserting data into database');

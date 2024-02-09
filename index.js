@@ -1,7 +1,9 @@
 //console.log(msg)
 var timer = document.getElementById("timer");
+var bonner = document.getElementById("bonner");
 var timerOn;
 var timeStatus = "100"
+var werknemers = ["Gianni", "Louis", "Thibeus", "Ruben", "Sander"]
 // status 000 = STOP BON press
 // Status 100 = 0 Minuten
 // Status 200 = >0 Minuten
@@ -49,7 +51,7 @@ function vergeetFunctie(){
 }
 
 function knopklik(button){
-    console.log("test", button.innerHTML)
+    //console.log("test", button.innerHTML)
     if(button.innerHTML == "BON"){
         button.innerHTML = "STOP BON"
         button.style.backgroundColor = "Red"
@@ -147,7 +149,7 @@ function secret(){
 
 function statusUpdate(timeStatus){
     var status = document.getElementById("status");
-    console.log(timeStatus);
+    //console.log(timeStatus);
     if(timeStatus == "000"){
         status.innerHTML = "HE IS BACK.... FINALLY"
         status.style.color = "#1bbacf"
@@ -213,12 +215,27 @@ function slaOp(knop){
     //console.log(resultaat, dagtotaal, knop.nextElementSibling.childNodes[1], tellerConverter("01:01:01"), knop.previousElementSibling)
 }
 
+function text(url) {
+    return fetch(url).then(res => res.text());
+}
+  
+var ip_res;
+text('https://www.cloudflare.com/cdn-cgi/trace').then(data => {
+    let ipRegex = /[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}/
+    let ip = data.match(ipRegex)[0];
+    console.log(ip);
+    ip_res = ip;
+});
+
 function insertInto(){
-    console.log(bonner.innerHTML);
-    const data = {
+    console.log(bonner.value, timer.innerText, tellerConverter(timer.innerText), ip_res);
+    /*const data = {
+        SwitchID, 
+        BonTijd, 
+        Logger
         created_at: new Date(),
         product_name: "Titielover deluxe"
-    };
+    };*/
       
     // Configure the fetch request
     fetch('/insert', {
@@ -249,3 +266,6 @@ function insertInto(){
     
 }
 
+function ip_comparer(){
+    
+}
