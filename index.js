@@ -14,6 +14,8 @@ document.addEventListener('DOMContentLoaded', function () {
     //const localSaveTimer = localStorage.getItem('switchSetting');
     const localSaveDarkMode = localStorage.getItem('switchSetting');
     const switchElement = document.getElementById('darkModeSwitch');
+    var userList = document.getElementById("userList");
+    userList.style.display = "none"
 
     if (localSaveDarkMode) {
         switchElement.checked = localSaveDarkMode === 'true';
