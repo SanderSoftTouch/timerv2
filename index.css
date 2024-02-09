@@ -119,7 +119,6 @@ body{
 
 /*Dropdpown*/
 .userSelect{
-    margin-top: 15px;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     color: #1bbacf;
     text-align: center;
@@ -135,6 +134,26 @@ body{
     text-align: center;
     margin-left: 5px;
     width: 150px;
+}
+
+.userContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px
+}
+
+.userContainerElement:nth-of-type(1){
+    margin-right: 5px;
+    padding: 2px 5px;
+    border-radius: 5px;
+}
+
+.userContainerElement:nth-of-type(3){
+    margin-left: 5px;
+    padding: 2px 5px;
+    color: #1bbacf;
+    border-radius: 5px;
 }
 
 .timer{
@@ -166,6 +185,23 @@ body{
 .darkModeText {
     color: #1bbacf;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.userList {
+    text-align: center;
+    color: #1bbacf;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 10px;
+    margin-top: 3px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.userListElement {
+    width: 100px;
+    height: 50px;
 }
 
 .darkModeContainter {
