@@ -204,7 +204,7 @@ function darkMode(){
         }
     }
     else{
-        document.getElementById('darkModeText2').style.color = "black"
+        //document.getElementById('darkModeText2').style.color = "black"
         body.style.backgroundColor = "black";
         mainContainer.style.backgroundColor = "black";
         buttonSave.style.backgroundColor = "black";
