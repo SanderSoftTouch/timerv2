@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./index.css">
+    <script src="https://kit.fontawesome.com/fadbf03f60.js" crossorigin="anonymous"></script>
 </head>
 <body id="body">
     <div class="mainContainer" id="mainContainer">
@@ -32,16 +33,35 @@
         </div>
         <!--End Timer-->
         <!--Dropdown-->
-        <div class="userSelect" id="bon-dropdown">
-            <select class="userDropdown" name="bonner" id="bonner">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-            </select>        
+        <div class="userContainer">
+            <div class="userContainerElement" id="hiddenElement">
+                <i class="fa-solid fa-question"></i>
+            </div>
+            <div class="userSelect userContainerElement" id="bon-dropdown">
+                <select class="userDropdown" name="bonner" id="bonner">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>        
+            </div>
+            <div class="userContainerElement" onclick="showUserList()">
+                <i class="fa-solid fa-question"></i>
+            </div>
         </div>
         <!--End Dropdown-->
+        <div class="userList" id="userList">
+            <div class="userListElement">
+                <div>1 = Gianni</div>
+                <div>2 = Louis</div>
+            </div>
+            <div class="userListElement">
+                <div>3 = Thibeau</div>
+                <div>4 = Ruben</div>
+                <div>5 = Sander</div>
+            </div>
+        </div>
         <div class="buttonRow">
             <button class="buttonBon" id="buttonBon" onclick="knopklik(this)">BON</button>
             <button class="buttonSave" id="buttonSave" onclick="insertInto()">SAVE</button>  

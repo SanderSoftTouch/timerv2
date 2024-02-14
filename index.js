@@ -3,17 +3,19 @@ var timer = document.getElementById("timer");
 var bonner = document.getElementById("bonner");
 var timerOn;
 var timeStatus = "100"
-var werknemers = ["Gianni", "Louis", "Thibeus", "Ruben", "Sander"]
 // status 000 = STOP BON press
 // Status 100 = 0 Minuten
 // Status 200 = >0 Minuten
 // Status 300 = >10 Minuten
 // Status 400 = >15 Minuten
+var werknemers = ["Gianni", "Louis", "Thibeus", "Ruben", "Sander"]
 
 document.addEventListener('DOMContentLoaded', function () {
     //const localSaveTimer = localStorage.getItem('switchSetting');
     const localSaveDarkMode = localStorage.getItem('DarkModeSwitch');
     const switchElement = document.getElementById('darkModeSwitch');
+    var userList = document.getElementById("userList");
+    userList.style.display = "none"
 
     if (localSaveDarkMode) {
         switchElement.checked = localSaveDarkMode === 'true';
@@ -61,6 +63,17 @@ function vergeetFunctie(){
         vergeet.hidden = false
     } else {
         vergeet.hidden = true
+    }
+}
+
+function showUserList(){
+    var userList = document.getElementById("userList");
+    if(userList.style.display == "none"){
+        console.log("userList > visible");
+        userList.style.display = "flex"
+    } else {
+        console.log("userList > hidden");
+        userList.style.display = "none"
     }
 }
 
@@ -195,6 +208,7 @@ function darkMode(){
         body.style.backgroundColor = "#dbdbdb";
         mainContainer.style.backgroundColor = "#dbdbdb";
         buttonSave.style.backgroundColor = "#cccccc";
+        hiddenElement.style.color = "#dbdbdb";
         document.getElementById('darkModeText2').hidden = true
         if(buttonBon.innerHTML == "BON"){
             buttonBon.style.backgroundColor = "#cccccc";
@@ -204,17 +218,17 @@ function darkMode(){
         }
     }
     else{
+        document.getElementById('darkModeText2').style.color = "black"
         body.style.backgroundColor = "black";
         mainContainer.style.backgroundColor = "black";
         buttonSave.style.backgroundColor = "black";
+        hiddenElement.style.color = "black";
         document.getElementById('darkModeText2').hidden = false
         document.getElementById('darkModeSwitchConctainer').hidden = true
         if(buttonBon.innerHTML == "BON"){
-            console.log("Bon-> Zwart");
             buttonBon.style.backgroundColor = "black";
         }
         else{
-            console.log("StopBon-> Rood");
             buttonBon.style.backgroundColor = "red";
         }
     }
