@@ -39,6 +39,21 @@ app.get('/test', (req, res) => {
   
       // Send the query results to the client
       res.send(results);
+      console.log(results);  
+    });
+});
+
+app.get('/getUser', (req, res) => {
+    const querySel = 'SELECT * FROM users ORDER BY UserID DESC LIMIT 1';
+    connection.query(querySel, (err, results) => {
+      if (err) {
+        console.error('Error executing MySQL query:', err);
+        res.status(500).send('Error fetching data from database');
+        return;
+      }
+  
+      // Send the query results to the client
+      res.send(results);
     });
 });
 
@@ -47,11 +62,11 @@ app.use(express.urlencoded({ extended: true })); // Middleware to parse URL-enco
 
 // Endpoint to handle POST requests for inserting data
 app.post('/insert', (req, res) => {
-  const { SwitchID, BonTijd, Logger } = req.body; // Assuming you're sending 'name' and 'age' in the request body
+  const { SwitchID, BonTijd, UserID } = req.body; // Assuming you're sending 'name' and 'age' in the request body
 
   // Perform the database query
-  const query = 'INSERT INTO timer (SwitchID, BonTijd, Logger) VALUES (?, ?)';
-  connection.query(query, [SwitchID, BonTijd, Logger], (err, results) => {
+  const query = 'INSERT INTO timer (SwitchID, BonTijd, UserID) VALUES (?, ?, ?)';
+  connection.query(query, [SwitchID, BonTijd, UserID], (err, results) => {
     if (err) {
       console.error('Error executing MySQL query:', err);
       res.status(500).send('Error inserting data into database');
@@ -61,6 +76,21 @@ app.post('/insert', (req, res) => {
     res.send('Data inserted successfully');
   });
 });
+
+app.post('/insertuser', (req, res) => {
+    const { UserName } = req.body; // Assuming you're sending 'name' and 'age' in the request body
+  
+    // Perform the database query
+    const query = 'INSERT INTO users (UserName) VALUES (?)';
+    connection.query(query, [UserName], (err, results) => {
+      if (err) {
+        console.error('Error executing MySQL query:', err);
+        res.status(500).send('Error inserting data into database');
+        return;
+      }
+      res.send('Data inserted successfully');
+    });
+  });
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);

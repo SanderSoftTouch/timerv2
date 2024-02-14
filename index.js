@@ -12,7 +12,7 @@ var werknemers = ["Gianni", "Louis", "Thibeus", "Ruben", "Sander"]
 
 document.addEventListener('DOMContentLoaded', function () {
     //const localSaveTimer = localStorage.getItem('switchSetting');
-    const localSaveDarkMode = localStorage.getItem('switchSetting');
+    const localSaveDarkMode = localStorage.getItem('DarkModeSwitch');
     const switchElement = document.getElementById('darkModeSwitch');
 
     if (localSaveDarkMode) {
@@ -21,15 +21,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Add event listener for the switch change
     switchElement.addEventListener('change', function () {
-        localStorage.setItem('switchSetting', switchElement.checked);
+        localStorage.setItem('DarkModeSwitch', switchElement.checked);
     });
 });
-
 
 window.onload = function(e){
     timer.innerText = '00:00:00';
     darkMode();
-    fetch('/test')
+    fetch('localhost3000/test')
         .then(response => response.json())
         .then(data => {
             // Handle the data received from the server
@@ -39,6 +38,21 @@ window.onload = function(e){
         .catch(error => {
             console.error('Error fetching data:', error);
         });
+}
+
+function getSwitchID(){
+    //alert("Hello, " + userInput + "! Welcome to our website.");
+    fetch('/getUser')
+        .then(response => response.json())
+        .then(data => {
+            // Handle the data received from the server
+            console.log(data); // Example: log the data to the console
+            // Perform any further processing or manipulation of the data here
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+        });
+    
 }
 
 function vergeetFunctie(){
@@ -215,7 +229,7 @@ function slaOp(knop){
     //console.log(resultaat, dagtotaal, knop.nextElementSibling.childNodes[1], tellerConverter("01:01:01"), knop.previousElementSibling)
 }
 
-function text(url) {
+/*function text(url) {
     return fetch(url).then(res => res.text());
 }
   
@@ -225,7 +239,7 @@ text('https://www.cloudflare.com/cdn-cgi/trace').then(data => {
     let ip = data.match(ipRegex)[0];
     console.log(ip);
     ip_res = ip;
-});
+});*/
 
 function insertInto(){
     console.log(bonner.value, timer.innerText, tellerConverter(timer.innerText), ip_res);
@@ -266,6 +280,17 @@ function insertInto(){
     
 }
 
-function ip_comparer(){
-    
+function userMaker(){
+    const localSaveUserID = localStorage.getItem('UserID');
+    if (localSaveUserID == null){
+        console.log("test")
+        var userInput = prompt("Geef username wollach:");
+        if (userInput == null) {
+            alert("Geef toch maar een username");
+            var userInput = prompt("Geef username wollach:");
+        } else {
+            getSwitchID(userInput)
+        }
+    }
+
 }
