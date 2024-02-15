@@ -78,5 +78,28 @@
         <div id="saveStatus" class="saveStatus" hidden></div>
         <script src="./index.js"></script>
     </div>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyBKmQHzqcWplv1RDvKWYdRQRg5o3PbkSds",
+          authDomain: "bon-app-7cee4.firebaseapp.com",
+          projectId: "bon-app-7cee4",
+          storageBucket: "bon-app-7cee4.appspot.com",
+          messagingSenderId: "894645695465",
+          appId: "1:894645695465:web:4df19f36bd03c85e891178",
+          measurementId: "G-V6TCR71WDC"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+      </script>
 </body>
 </html>

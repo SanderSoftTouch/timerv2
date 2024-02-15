@@ -1,8 +1,10 @@
 const express = require('express');
 const mysql = require('mysql');
+const bodyParser = require("body-parser"); 
+const cors = require('cors');
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 const connection = mysql.createConnection({
   host: 'test2.softtouch.eu',
@@ -19,6 +21,15 @@ connection.connect((err) => {
   console.log('Connected to MySQL database');
 });
 
+app.use(bodyParser.json());
+app.use(express.json()); // Middleware to parse JSON bodies
+app.use(express.urlencoded({ extended: true })); // Middleware to parse URL-encoded bodies
+
+/*app.use(cors({
+  origin: 'http://localhost:3000', // specify the origin(s) you want to allow
+  methods: ['GET', 'POST'], // specify the HTTP methods you want to allow
+  allowedHeaders: ['Content-Type', 'Authorization'], // specify the headers you want to allow
+}));
 app.use(express.static(__dirname));
 
 app.get('/', (req, res) => {
@@ -26,7 +37,7 @@ app.get('/', (req, res) => {
   // and then serve your index.html file
   console.log("test", req)
   res.sendFile(__dirname + '/index.html');
-});
+});*/
 
 app.get('/test', (req, res) => {
     const query = 'SELECT * FROM test';
@@ -40,6 +51,8 @@ app.get('/test', (req, res) => {
       // Send the query results to the client
       res.send(results);
       console.log(results);  
+      console.log("req", req);
+      console.log("res", req.res.originalUrl, "res_path"); //, res.rawHeaders);
     });
 });
 
@@ -56,9 +69,6 @@ app.get('/getUser', (req, res) => {
       res.send(results);
     });
 });
-
-app.use(express.json()); // Middleware to parse JSON bodies
-app.use(express.urlencoded({ extended: true })); // Middleware to parse URL-encoded bodies
 
 // Endpoint to handle POST requests for inserting data
 app.post('/insert', (req, res) => {

@@ -30,8 +30,13 @@ document.addEventListener('DOMContentLoaded', function () {
 window.onload = function(e){
     timer.innerText = '00:00:00';
     darkMode();
-    fetch('localhost3000/test')
-        .then(response => response.json())
+    fetch('/test')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
         .then(data => {
             // Handle the data received from the server
             console.log(data); // Example: log the data to the console
@@ -39,6 +44,10 @@ window.onload = function(e){
         })
         .catch(error => {
             console.error('Error fetching data:', error);
+            // Log the response received from the server if available
+            if (error.response) {
+                console.error('Response:', error.response);
+            }
         });
 }
 
