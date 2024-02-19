@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
 window.onload = function(e){
     timer.innerText = '00:00:00';
     darkMode();
-    fetch('/test')
+    /*fetch('/test')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -48,7 +48,48 @@ window.onload = function(e){
             if (error.response) {
                 console.error('Response:', error.response);
             }
-        });
+        });*/
+}
+
+function testPOST(){
+    /*var url = 'https://script.google.com/macros/s/AKfycbyHGV1vSmR7z036i_R4-6w6kJpiqnhchbToAO9ChdX4MVfTIOyNX6NHN3Q3iJ0ujKjd/exec'
+    fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          field1: 'Value 1',
+          field2: 'Value 2'
+        })
+      })
+      .then(response => {
+        if (response.ok) {
+          console.log('Data added to spreadsheet.');
+        } else {
+          console.error('Failed to add data to spreadsheet.');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });*/
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'https://script.google.com/macros/s/AKfycbyHGV1vSmR7z036i_R4-6w6kJpiqnhchbToAO9ChdX4MVfTIOyNX6NHN3Q3iJ0ujKjd/exec');
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onload = function() {
+    if (xhr.status == 200) {
+        console.log('Request successful');
+    } else {
+        console.error('Request failed');
+    }
+    };
+    xhr.onerror = function() {
+        console.error('Request failed');
+    };
+    xhr.send(JSON.stringify({
+        field1: 'Value 1',
+        field2: 'Value 2'
+    }));
 }
 
 function getSwitchID(){
