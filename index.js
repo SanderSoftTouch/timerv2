@@ -30,29 +30,30 @@ document.addEventListener('DOMContentLoaded', function () {
 window.onload = function(e){
     timer.innerText = '00:00:00';
     darkMode();
-    /*fetch('/test')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            // Handle the data received from the server
-            console.log(data); // Example: log the data to the console
-            // Perform any further processing or manipulation of the data here
-        })
-        .catch(error => {
-            console.error('Error fetching data:', error);
-            // Log the response received from the server if available
-            if (error.response) {
-                console.error('Response:', error.response);
-            }
-        });*/
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'https://script.google.com/macros/s/AKfycbyHGV1vSmR7z036i_R4-6w6kJpiqnhchbToAO9ChdX4MVfTIOyNX6NHN3Q3iJ0ujKjd/exec');
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.setRequestHeader('Access-Control-Allow-Origin', '*'); // Add this line
+    xhr.setRequestHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS'); // Add this line
+    xhr.setRequestHeader('Access-Control-Allow-Headers', 'Content-Type'); // Add this line
+    xhr.onload = function() {
+      if (xhr.status == 200) {
+        console.log('Request successful');
+      } else {
+        console.error('Request failed');
+      }
+    };
+    xhr.onerror = function() {
+      console.error('Request failed');
+    };
+    xhr.send(JSON.stringify({
+      field1: 'Value 1',
+      field2: 'Value 2'
+    }));
 }
 
-function testPOST(){
-    /*var url = 'https://script.google.com/macros/s/AKfycbyHGV1vSmR7z036i_R4-6w6kJpiqnhchbToAO9ChdX4MVfTIOyNX6NHN3Q3iJ0ujKjd/exec'
+/* function testPOST(){
+    var url = 'https://script.google.com/macros/s/AKfycbyHGV1vSmR7z036i_R4-6w6kJpiqnhchbToAO9ChdX4MVfTIOyNX6NHN3Q3iJ0ujKjd/exec'
     fetch(url, {
         method: 'POST',
         headers: {
@@ -72,7 +73,7 @@ function testPOST(){
       })
       .catch(error => {
         console.error('Error:', error);
-      });*/
+      });
     var xhr = new XMLHttpRequest();
     xhr.open('POST', 'https://script.google.com/macros/s/AKfycbyHGV1vSmR7z036i_R4-6w6kJpiqnhchbToAO9ChdX4MVfTIOyNX6NHN3Q3iJ0ujKjd/exec');
     xhr.setRequestHeader('Content-Type', 'application/json');
@@ -90,7 +91,7 @@ function testPOST(){
         field1: 'Value 1',
         field2: 'Value 2'
     }));
-}
+} */
 
 function getSwitchID(){
     //alert("Hello, " + userInput + "! Welcome to our website.");
