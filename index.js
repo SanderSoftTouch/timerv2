@@ -1,3 +1,5 @@
+//import { PostData } from "./server.js";
+
 //console.log(msg)
 var timer = document.getElementById("timer");
 var bonner = document.getElementById("bonner");
@@ -11,6 +13,8 @@ var timeStatus = "100"
 var werknemers = ["Gianni", "Louis", "Thibeus", "Ruben", "Sander"]
 
 document.addEventListener('DOMContentLoaded', function () {
+    timer.innerText = '00:00:00';
+    darkMode();
     //const localSaveTimer = localStorage.getItem('switchSetting');
     const localSaveDarkMode = localStorage.getItem('DarkModeSwitch');
     const switchElement = document.getElementById('darkModeSwitch');
@@ -27,73 +31,33 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-window.onload = function(e){
-    timer.innerText = '00:00:00';
-    darkMode();
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'https://script.google.com/macros/s/AKfycbyHGV1vSmR7z036i_R4-6w6kJpiqnhchbToAO9ChdX4MVfTIOyNX6NHN3Q3iJ0ujKjd/exec');
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.setRequestHeader('Access-Control-Allow-Origin', '*'); // Add this line
-    xhr.setRequestHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS'); // Add this line
-    xhr.setRequestHeader('Access-Control-Allow-Headers', 'Content-Type'); // Add this line
-    xhr.onload = function() {
-      if (xhr.status == 200) {
-        console.log('Request successful');
-      } else {
-        console.error('Request failed');
-      }
-    };
-    xhr.onerror = function() {
-      console.error('Request failed');
-    };
-    xhr.send(JSON.stringify({
-      field1: 'Value 1',
-      field2: 'Value 2'
-    }));
+async function getData() {
+    const response = await fetch('http://localhost:3000/data');
+    const data = await response.json();
+    console.log('Data:', data);
+    return data
 }
-
-/* function testPOST(){
-    var url = 'https://script.google.com/macros/s/AKfycbyHGV1vSmR7z036i_R4-6w6kJpiqnhchbToAO9ChdX4MVfTIOyNX6NHN3Q3iJ0ujKjd/exec'
-    fetch(url, {
+  
+async function updateData() {
+    var oldData = await getData()
+    var newData = {
+        "id": 3,
+        "name": "Jane Doe",
+        "age": 30
+    }
+    var updatedData = oldData.push(newData)
+    console.log(oldData, newData, updatedData)
+    const response = await fetch('http://localhost:3000/data', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          field1: 'Value 1',
-          field2: 'Value 2'
-        })
-      })
-      .then(response => {
-        if (response.ok) {
-          console.log('Data added to spreadsheet.');
-        } else {
-          console.error('Failed to add data to spreadsheet.');
-        }
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'https://script.google.com/macros/s/AKfycbyHGV1vSmR7z036i_R4-6w6kJpiqnhchbToAO9ChdX4MVfTIOyNX6NHN3Q3iJ0ujKjd/exec');
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.onload = function() {
-    if (xhr.status == 200) {
-        console.log('Request successful');
-    } else {
-        console.error('Request failed');
-    }
-    };
-    xhr.onerror = function() {
-        console.error('Request failed');
-    };
-    xhr.send(JSON.stringify({
-        field1: 'Value 1',
-        field2: 'Value 2'
-    }));
-} */
+        body: JSON.stringify(oldData),
+    });
+  console.log(await response.text());
+}
 
-function getSwitchID(){
+/*function getSwitchID(){
     //alert("Hello, " + userInput + "! Welcome to our website.");
     fetch('/getUser')
         .then(response => response.json())
@@ -106,7 +70,7 @@ function getSwitchID(){
             console.error('Error fetching data:', error);
         });
     
-}
+}*/
 
 function vergeetFunctie(){
     var vergeet = document.getElementById("vergeet");
@@ -294,18 +258,6 @@ function slaOp(knop){
     //console.log(resultaat, dagtotaal, knop.nextElementSibling.childNodes[1], tellerConverter("01:01:01"), knop.previousElementSibling)
 }
 
-/*function text(url) {
-    return fetch(url).then(res => res.text());
-}
-  
-var ip_res;
-text('https://www.cloudflare.com/cdn-cgi/trace').then(data => {
-    let ipRegex = /[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}/
-    let ip = data.match(ipRegex)[0];
-    console.log(ip);
-    ip_res = ip;
-});*/
-
 function insertInto(){
     console.log(bonner.value, timer.innerText, tellerConverter(timer.innerText), ip_res);
     /*const data = {
@@ -359,3 +311,104 @@ function userMaker(){
     }
 
 }
+
+// Fetch the user.json file
+//fetchJSON('user.json')
+//fetchJSON('log.json')
+
+/*function fetchJSON(naam){ //'user.json'
+    fetch(naam)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`Failed to load ${naam}`);
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log(naam, 'data:', data);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+}
+
+function postJSON(){
+    fetch('/run-script', { method: 'GET' })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to run server script');
+        }
+        console.log('Server script executed successfully');
+      })
+      .catch(error => {
+        console.error('Error running server script:', error);
+      });   
+}
+
+async function testJson(){
+    await fetch('/execute');    
+}*/
+
+/* function testPOST(){
+    var url = 'https://script.google.com/macros/s/AKfycbyHGV1vSmR7z036i_R4-6w6kJpiqnhchbToAO9ChdX4MVfTIOyNX6NHN3Q3iJ0ujKjd/exec'
+    fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          field1: 'Value 1',
+          field2: 'Value 2'
+        })
+      })
+      .then(response => {
+        if (response.ok) {
+          console.log('Data added to spreadsheet.');
+        } else {
+          console.error('Failed to add data to spreadsheet.');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'https://script.google.com/macros/s/AKfycbyHGV1vSmR7z036i_R4-6w6kJpiqnhchbToAO9ChdX4MVfTIOyNX6NHN3Q3iJ0ujKjd/exec');
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onload = function() {
+    if (xhr.status == 200) {
+        console.log('Request successful');
+    } else {
+        console.error('Request failed');
+    }
+    };
+    xhr.onerror = function() {
+        console.error('Request failed');
+    };
+    xhr.send(JSON.stringify({
+        field1: 'Value 1',
+        field2: 'Value 2'
+    }));
+    
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'https://script.google.com/macros/s/AKfycbyHGV1vSmR7z036i_R4-6w6kJpiqnhchbToAO9ChdX4MVfTIOyNX6NHN3Q3iJ0ujKjd/exec');
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.setRequestHeader('Access-Control-Allow-Origin', '*'); // Add this line
+    xhr.setRequestHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS'); // Add this line
+    xhr.setRequestHeader('Access-Control-Allow-Headers', 'Content-Type'); // Add this line
+    xhr.onload = function() {
+      if (xhr.status == 200) {
+        console.log('Request successful');
+      } else {
+        console.error('Request failed');
+      }
+    };
+    xhr.onerror = function() {
+      console.error('Request failed');
+    };
+    xhr.send(JSON.stringify({
+      field1: 'Value 1',
+      field2: 'Value 2'
+    }));
+} */
+
+  
