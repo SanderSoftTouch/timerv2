@@ -1,65 +1,132 @@
-/*const express = require('express');
-import fetch from 'axios';
-//const fetch = require('node-fetch');
-const app = express();
-const PORT = process.env.PORT || 3000; // Use a port of your choice
+/*const fs = require('fs');
 
-app.use(express.json());
-// Add middleware to set CORS headers
-app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*'); // Allow requests from any origin
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS'); // Allow specified HTTP methods
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type'); // Allow specified headers
-    console.log(`CORS set`);
-    next();
-});
+// Path to the JSON file
+const filePathLog = 'log.json';
+const filePathUser = 'user.json';
 
-app.post('/proxy', async (req, res) => {
-    const url = 'https://script.google.com/macros/s/AKfycbyHGV1vSmR7z036i_R4-6w6kJpiqnhchbToAO9ChdX4MVfTIOyNX6NHN3Q3iJ0ujKjd/exec';
+function PostData(){
+    // Fetch data from JSON file
+    fs.readFile(filePathUser, 'utf8', (err, data) => {
+      if (err) {
+        console.error('Error reading file:', err);
+        return;
+      }
     
-    try {
-        const response = await fetch(url, {
-            method: 'POST',
-            body: JSON.stringify(req.body),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-        const data = await response.json();
-        res.json(data);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Internal Server Error' });
+      let jsonData = [];
+      try {
+        // Parse JSON data
+        jsonData = JSON.parse(data);
+      } catch (error) {
+        console.error('Error parsing JSON:', error);
+        return;
+      }
+    
+      // Modify data (add new data or update existing data)
+      const newData = { id: 2, name: 'Jane Doe', age: 30 };
+      jsonData.push(newData);
+      //const updatedData = [jsonData, newData];
+    
+      // Convert updated data back to JSON format
+      const updatedJsonData = JSON.stringify(jsonData, null, 2);
+    
+      // Write updated data back to the JSON file
+      fs.writeFile(filePath, updatedJsonData, 'utf8', (err) => {
+        if (err) {
+          console.error('Error writing file:', err);
+          return;
+        }
+        console.log('Data successfully updated.');
+      });
+    });
+}
+
+export {PostData};*/
+
+/*const express = require('express');
+const path = require('path');
+
+const app = express();
+
+// Serve static files
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Serve JavaScript modules with correct MIME type
+app.get('*.js', (req, res, next) => {
+    res.set('Content-Type', 'application/javascript');
+    next();
+  });
+
+// Define route to execute server.js
+app.get('/execute', (req, res) => {
+  exec('node server.js', (error, stdout, stderr) => {
+    if (error) {
+      console.error(`Error executing server.js: ${error.message}`);
+      return;
     }
+    if (stderr) {
+      console.error(`stderr: ${stderr}`);
+      return;
+    }
+    console.log(`stdout: ${stdout}`);
+  });
+  res.send('Server.js executed successfully.');
 });
 
+app.get('/run-script', (req, res) => {
+  // Execute your server.js script here
+  console.log('Executing server.js...');
+});
+
+const PORT = 3000;
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });*/
 
-// Import Axios
-const axios = require('axios');
+const express = require('express');
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const fs = require('fs');
 
-// Example URL
-const url = 'https://script.google.com/macros/s/  AKfycbyHGV1vSmR7z036i_R4-6w6kJpiqnhchbToAO9ChdX4MVfTIOyNX6NHN3Q3iJ0ujKjd/exec';
+const app = express();
+const PORT = 3000;
 
-// Example data to send in the request
-const postData = {
-  key: 'value'
-};
+// Use CORS middleware
+app.use(cors());
 
-// Make a POST request using Axios
-axios.post(url, postData, {
-    headers: {
-      'Content-Type': 'application/json'
+// Middleware to parse JSON bodies
+app.use(bodyParser.json());
+
+// Serve static files (optional)
+app.use(express.static('public'));
+
+// Read data from JSON file
+app.get('/data', (req, res) => {
+  fs.readFile('user.json', 'utf8', (err, data) => {
+    if (err) {
+      console.error('Error reading file:', err);
+      res.status(500).send('Error reading file');
+      return;
     }
-})
-.then(response => {
-    // Handle the response data
-    console.log(response.data);
-})
-.catch(error => {
-    // Handle errors
-    console.error('Error:', error);
+    res.json(JSON.parse(data));
+    console.log(JSON.parse(data));
+  });
+});
+
+// Update data in JSON file
+app.post('/data', (req, res) => {
+  const newData = req.body;
+  fs.writeFile('user.json', JSON.stringify(newData, null, 2), (err) => {
+    if (err) {
+      console.error('Error writing file:', err);
+      res.status(500).send('Error writing file');
+      return;
+    }
+    res.send('Data updated successfully');
+  });
+});
+
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server listening on port ${PORT}`);
 });
 
