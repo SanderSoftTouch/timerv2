@@ -1,25 +1,20 @@
-//import { PostData } from "./server.js";
-
-//console.log(msg)
 var timer = document.getElementById("timer");
 var bonner = document.getElementById("bonner");
 var timerOn;
 var timeStatus = "100"
-// status 000 = STOP BON press
-// Status 100 = 0 Minuten
-// Status 200 = >0 Minuten
-// Status 300 = >10 Minuten
-// Status 400 = >15 Minuten
 var werknemers = ["Gianni", "Louis", "Thibeus", "Ruben", "Sander"]
+var resultaat;
 
 document.addEventListener('DOMContentLoaded', function () {
     timer.innerText = '00:00:00';
     darkMode();
-    //const localSaveTimer = localStorage.getItem('switchSetting');
-    const localSaveDarkMode = localStorage.getItem('DarkModeSwitch');
-    const switchElement = document.getElementById('darkModeSwitch');
     var userList = document.getElementById("userList");
     userList.style.display = "none"
+    ipChecker();
+    //Veel plezier met fixen Thibeau #notmyproblem
+    /*const localSaveTimer = localStorage.getItem('switchSetting');
+    const localSaveDarkMode = localStorage.getItem('DarkModeSwitch');
+    const switchElement = document.getElementById('darkModeSwitch');
 
     if (localSaveDarkMode) {
         switchElement.checked = localSaveDarkMode === 'true';
@@ -28,72 +23,60 @@ document.addEventListener('DOMContentLoaded', function () {
     // Add event listener for the switch change
     switchElement.addEventListener('change', function () {
         localStorage.setItem('DarkModeSwitch', switchElement.checked);
-    });
+    });*/
 });
 
-async function getData() {
-    const response = await fetch('http://localhost:3000/data');
-    const data = await response.json();
-    console.log('Data:', data);
-    return data
+function ipChecker(){
+    fetch("https://ipinfo.io/json") 
+                .then(response => response.json())
+                .then(data => {
+                    // Display the IP address on the screen
+                    //document.getElementById("ip-address").textContent = `IP Address: ${data.ip}`;
+                    console.log(data.ip)
+                })
+                .catch(error => {
+                    console.error("Error fetching IP address:", error);
+                    //document.getElementById("ip-address").textContent = "Unable to retrieve IP address.";
+                });
 }
-  
-async function updateData() {
-    var oldData = await getData()
-    var newData = {
-        "id": 3,
-        "name": "Jane Doe",
-        "age": 30
+
+function userChecker(){
+    const localSaveUserID = localStorage.getItem('UserID');
+    if (localSaveUserID == null){
+        var userInput = prompt("Geef username wollach:");
+        while (userInput == null) {
+            alert("Geef toch maar een username");
+            userInput = prompt("Geef username wollach:");
+        } 
+        localStorage.setItem("UserID", userInput);
     }
-    var updatedData = oldData.push(newData)
-    console.log(oldData, newData, updatedData)
-    const response = await fetch('http://localhost:3000/data', {
+}
+
+function insertInto(){
+    userChecker();
+    resultaat = JSON.stringify({
+        Bonner: werknemers[bonner.value - 1],
+        BonTijdMS: timer.innerText,
+        BonTijdSec: tellerConverter(timer.innerText),
+        Logger: localStorage.getItem('UserID'),
+        CreatedAt: new Date().toLocaleString()
+    })
+    console.log(bonner.value, timer.innerText, tellerConverter(timer.innerText),  "data", resultaat); //ip_res,, JSON.stringify(data)
+    fetch('http://localhost:3019/post', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+            'Content-Type': 'application/json'
         },
-        body: JSON.stringify(oldData),
-    });
-  console.log(await response.text());
-}
-
-/*function getSwitchID(){
-    //alert("Hello, " + userInput + "! Welcome to our website.");
-    fetch('/getUser')
-        .then(response => response.json())
-        .then(data => {
-            // Handle the data received from the server
-            console.log(data); // Example: log the data to the console
-            // Perform any further processing or manipulation of the data here
-        })
-        .catch(error => {
-            console.error('Error fetching data:', error);
-        });
-    
-}*/
-
-function vergeetFunctie(){
-    var vergeet = document.getElementById("vergeet");
-    if(vergeet.hidden){
-        vergeet.hidden = false
-    } else {
-        vergeet.hidden = true
-    }
-}
-
-function showUserList(){
-    var userList = document.getElementById("userList");
-    if(userList.style.display == "none"){
-        console.log("userList > visible");
-        userList.style.display = "flex"
-    } else {
-        console.log("userList > hidden");
-        userList.style.display = "none"
-    }
-}
+        body: resultaat
+    })
+    .then(response => response.json())
+    .then(data => console.log('Success:', data))
+    .catch(error => console.error('Error:', error));
+    resetClick()
+}    
 
 function knopklik(button){
-    //console.log("test", button.innerHTML)
+    //console.log("test", button) //button.innerHTML 
     if(button.innerHTML == "BON"){
         button.innerHTML = "STOP BON"
         button.style.backgroundColor = "Red"
@@ -151,6 +134,27 @@ function tellerConverter(tijd){
     var min = parseInt(tijdteller[1])*60
     var sec = parseInt(tijdteller[2])
     return uur + min + sec
+}
+
+//Thibeaugepruts
+function vergeetFunctie(){
+    var vergeet = document.getElementById("vergeet");
+    if(vergeet.hidden){
+        vergeet.hidden = false
+    } else {
+        vergeet.hidden = true
+    }
+}
+
+function showUserList(){
+    var userList = document.getElementById("userList");
+    if(userList.style.display == "none"){
+        console.log("userList > visible");
+        userList.style.display = "flex"
+    } else {
+        console.log("userList > hidden");
+        userList.style.display = "none"
+    }
 }
 
 function resetClick(){
@@ -249,24 +253,70 @@ function darkMode(){
     }
 }
 
-function slaOp(knop){
+
+// status 000 = STOP BON press
+// Status 100 = 0 Minuten
+// Status 200 = >0 Minuten
+// Status 300 = >10 Minuten
+// Status 400 = >15 Minuten
+
+/*async function getData() {
+    const response = await fetch('http://localhost:3000/data');
+    const data = await response.json();
+    console.log('Data:', data);
+    return data
+}
+  
+async function updateData() {
+    var oldData = await getData()
+    var newData = {
+        "id": 3,
+        "name": "Jane Doe",
+        "age": 30
+    }
+    var updatedData = oldData.push(newData)
+    console.log(oldData, newData, updatedData)
+    const response = await fetch('http://localhost:3000/data', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(oldData),
+    });
+  console.log(await response.text());
+}
+
+function getSwitchID(){
+    //alert("Hello, " + userInput + "! Welcome to our website.");
+    fetch('/getUser')
+        .then(response => response.json())
+        .then(data => {
+            // Handle the data received from the server
+            console.log(data); // Example: log the data to the console
+            // Perform any further processing or manipulation of the data here
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+        });
+    
+}*/
+
+/*function slaOp(knop){
     (knop.previousElementSibling.innerText == "Stop" ? toggleButton(knop.previousElementSibling) : null)
     var resultaat = window[`teller_${knop.parentElement.id.charAt(knop.parentElement.id.length - 1)}`]
     window[`teller_${knop.parentElement.id.charAt(knop.parentElement.id.length - 1)}`] = 0
     knop.previousElementSibling.previousElementSibling.innerText = '00:00:00'
     knop.nextElementSibling.childNodes[1].innerText = tijdConverter(tellerConverter(knop.nextElementSibling.childNodes[1].innerText) + resultaat);
     //console.log(resultaat, dagtotaal, knop.nextElementSibling.childNodes[1], tellerConverter("01:01:01"), knop.previousElementSibling)
-}
+}*/
 
-function insertInto(){
-    console.log(bonner.value, timer.innerText, tellerConverter(timer.innerText), ip_res);
     /*const data = {
         SwitchID, 
         BonTijd, 
         Logger
         created_at: new Date(),
         product_name: "Titielover deluxe"
-    };*/
+    };
       
     // Configure the fetch request
     fetch('/insert', {
@@ -293,24 +343,7 @@ function insertInto(){
         saveStatus.innerHTML = "Error saving this piece of shit";
         saveStatus.style.color = "red";
         saveStatus.hidden = false;
-    });
-    
-}
-
-function userMaker(){
-    const localSaveUserID = localStorage.getItem('UserID');
-    if (localSaveUserID == null){
-        console.log("test")
-        var userInput = prompt("Geef username wollach:");
-        if (userInput == null) {
-            alert("Geef toch maar een username");
-            var userInput = prompt("Geef username wollach:");
-        } else {
-            getSwitchID(userInput)
-        }
-    }
-
-}
+    });*/
 
 // Fetch the user.json file
 //fetchJSON('user.json')
