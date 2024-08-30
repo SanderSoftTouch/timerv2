@@ -22,11 +22,21 @@ const bonSchema = new mongoose.Schema({
     CreatedAt: String
 })
 
+//const userSchema
+
 const Bonners = mongoose.model("Timer", bonSchema)
 
 app.get("/", (req, res) => {
     //res.send("Hello world")
     res.sendFile(path.join(__dirname, "../index.html"))
+})
+
+app.get("/get", (req, res) => {
+    Bonners.find({}).then(function(users){
+        res.json(users)
+    }).catch(function(er){
+        console.log(err)
+    })
 })
 
 app.post("/post", async (req, res) => {

@@ -1,42 +1,91 @@
 var timer = document.getElementById("timer");
 var bonner = document.getElementById("bonner");
+var checkbox = document.getElementById('darkModeSwitch');
 var timerOn;
 var timeStatus = "100"
 var werknemers = ["Gianni", "Louis", "Thibeus", "Ruben", "Sander"]
 var resultaat;
 
 document.addEventListener('DOMContentLoaded', function () {
+    const localSaveDarkMode = localStorage.getItem('DarkModeSwitch')
     timer.innerText = '00:00:00';
-    darkMode();
     var userList = document.getElementById("userList");
     userList.style.display = "none"
     ipChecker();
-    //Veel plezier met fixen Thibeau #notmyproblem
-    /*const localSaveTimer = localStorage.getItem('switchSetting');
-    const localSaveDarkMode = localStorage.getItem('DarkModeSwitch');
-    const switchElement = document.getElementById('darkModeSwitch');
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        console.log(localSaveDarkMode, "switch", checkbox.checked)
+        switch(localSaveDarkMode){
+            case "true":
+                checkbox.checked = false
+                break;
+            case "false":
+                checkbox.checked = true
+                break;
+            default:
+                checkbox.checked = false
+        }
+        darkMode()
+    }
+});
 
-    if (localSaveDarkMode) {
-        switchElement.checked = localSaveDarkMode === 'true';
+/*function darkMode(chromesetting){
+    if(chromesetting){
+        console.log(chromesetting, "true")
+        checkbox.checked = false
+        darkModeSwitcher()
+    } else if(chromesetting == null || chromesetting == undefined){
+        console.log(chromesetting, "null")
+        checkbox.checked = false
+        darkModeSwitcher()
+    } else {
+        console.log(chromesetting, "false")
+        darkModeSwitcher()
     }
 
-    // Add event listener for the switch change
-    switchElement.addEventListener('change', function () {
-        localStorage.setItem('DarkModeSwitch', switchElement.checked);
-    });*/
-});
+}*/
+
+function darkMode(){
+    if(checkbox.checked){
+        body.style.backgroundColor = "#dbdbdb";
+        mainContainer.style.backgroundColor = "#dbdbdb";
+        buttonSave.style.backgroundColor = "#cccccc";
+        hiddenElement.style.color = "#dbdbdb";
+        document.getElementById('darkModeText2').hidden = true
+        if(buttonBon.innerHTML == "BON"){
+            buttonBon.style.backgroundColor = "#cccccc";
+        }
+        else{
+            buttonBon.style.backgroundColor = "red";
+        }
+    }
+    else{
+        //document.getElementById('darkModeText2').style.color = "black"
+        body.style.backgroundColor = "black";
+        mainContainer.style.backgroundColor = "black";
+        buttonSave.style.backgroundColor = "black";
+        hiddenElement.style.color = "black";
+        document.getElementById('darkModeText2').hidden = false
+        document.getElementById('darkModeSwitchConctainer').hidden = true
+        if(buttonBon.innerHTML == "BON"){
+            buttonBon.style.backgroundColor = "black";
+        }
+        else{
+            buttonBon.style.backgroundColor = "red";
+        }
+    }
+    console.log("darkModeSwitcher", !checkbox.checked)
+    localStorage.setItem('DarkModeSwitch', !checkbox.checked)
+}
 
 function ipChecker(){
     fetch("https://ipinfo.io/json") 
                 .then(response => response.json())
                 .then(data => {
-                    // Display the IP address on the screen
-                    //document.getElementById("ip-address").textContent = `IP Address: ${data.ip}`;
-                    console.log(data.ip)
+                    //console.log(data.ip)
+                    localStorage.setItem("IP", data.ip)
                 })
                 .catch(error => {
                     console.error("Error fetching IP address:", error);
-                    //document.getElementById("ip-address").textContent = "Unable to retrieve IP address.";
                 });
 }
 
@@ -58,7 +107,7 @@ function insertInto(){
         Bonner: werknemers[bonner.value - 1],
         BonTijdMS: timer.innerText,
         BonTijdSec: tellerConverter(timer.innerText),
-        Logger: localStorage.getItem('UserID'),
+        Logger: localStorage.getItem('IP').concat("_", localStorage.getItem('UserID')),
         CreatedAt: new Date().toLocaleString()
     })
     console.log(bonner.value, timer.innerText, tellerConverter(timer.innerText),  "data", resultaat); //ip_res,, JSON.stringify(data)
@@ -136,16 +185,6 @@ function tellerConverter(tijd){
     return uur + min + sec
 }
 
-//Thibeaugepruts
-function vergeetFunctie(){
-    var vergeet = document.getElementById("vergeet");
-    if(vergeet.hidden){
-        vergeet.hidden = false
-    } else {
-        vergeet.hidden = true
-    }
-}
-
 function showUserList(){
     var userList = document.getElementById("userList");
     if(userList.style.display == "none"){
@@ -184,14 +223,8 @@ function resetClick(){
 
     setTimeout(function() {
         saveStatus.hidden = true; // Show the status after resetting
-    }, 30000); // 30sec timeout
-    
+    }, 30000); // 30sec timeout    
 }
-
-function secret(){
-    document.getElementById('darkModeSwitchConctainer').hidden = false
-}
-
 
 function statusUpdate(timeStatus){
     var status = document.getElementById("status");
@@ -221,36 +254,18 @@ function statusUpdate(timeStatus){
     }
 }
 
-function darkMode(){
-    var checkbox = document.getElementById('darkModeSwitch');
-    if(checkbox.checked){
-        body.style.backgroundColor = "#dbdbdb";
-        mainContainer.style.backgroundColor = "#dbdbdb";
-        buttonSave.style.backgroundColor = "#cccccc";
-        hiddenElement.style.color = "#dbdbdb";
-        document.getElementById('darkModeText2').hidden = true
-        if(buttonBon.innerHTML == "BON"){
-            buttonBon.style.backgroundColor = "#cccccc";
-        }
-        else{
-            buttonBon.style.backgroundColor = "red";
-        }
+//Thibeaugepruts
+function vergeetFunctie(){
+    var vergeet = document.getElementById("vergeet");
+    if(vergeet.hidden){
+        vergeet.hidden = false
+    } else {
+        vergeet.hidden = true
     }
-    else{
-        //document.getElementById('darkModeText2').style.color = "black"
-        body.style.backgroundColor = "black";
-        mainContainer.style.backgroundColor = "black";
-        buttonSave.style.backgroundColor = "black";
-        hiddenElement.style.color = "black";
-        document.getElementById('darkModeText2').hidden = false
-        document.getElementById('darkModeSwitchConctainer').hidden = true
-        if(buttonBon.innerHTML == "BON"){
-            buttonBon.style.backgroundColor = "black";
-        }
-        else{
-            buttonBon.style.backgroundColor = "red";
-        }
-    }
+}
+
+function secret(){
+    document.getElementById('darkModeSwitchConctainer').hidden = false
 }
 
 
