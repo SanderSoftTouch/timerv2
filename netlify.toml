@@ -1,10 +1,10 @@
 [build]
   # Directory to publish (output directory from your build command or your static files)
-  publish = "build"  # or "dist" or your actual output directory
+  publish = "dist"  # "build" or "dist" or your actual output directory
 
   # Directory for Netlify functions
   functions = "netlify/functions"
 
-[functions]
+  # [functions]
   # Set up any function-specific configurations here if needed
-  node_bundler = "esbuild"  # Optional: Specifies the bundler to use (e.g., esbuild, webpack)
+  # node_bundler = "esbuild"  # Optional: Specifies the bundler to use (e.g., esbuild, webpack)
