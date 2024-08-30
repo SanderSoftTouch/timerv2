@@ -1,6 +1,6 @@
 [build]
   # Directory to publish (output directory from your build command or your static files)
-  publish = "dist"  # "build" or "dist" or your actual output directory
+  publish = "TIMERV2"  # "build" or "dist" or your actual output directory
 
   # Directory for Netlify functions
   functions = "netlify/functions"
