@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded', function () {
     userList.style.display = "none"
     ipChecker();
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        console.log(localSaveDarkMode, "switch", checkbox.checked)
         switch(localSaveDarkMode){
             case "true":
                 checkbox.checked = false
@@ -73,7 +72,6 @@ function darkMode(){
             buttonBon.style.backgroundColor = "red";
         }
     }
-    console.log("darkModeSwitcher", !checkbox.checked)
     localStorage.setItem('DarkModeSwitch', !checkbox.checked)
 }
 
